@@ -4,6 +4,7 @@ import 'package:medicon/core/snackbar.dart';
 import 'package:medicon/core/utils/colors.dart';
 import 'package:medicon/models/country.dart';
 import 'package:medicon/pages/onboarding_profile/select_country/search_country.dart';
+import 'package:medicon/pages/onboarding_profile/select_user_type/select_user_type.dart.dart';
 import 'package:medicon/services/onboarding_services/onboarding_service.dart';
 import 'package:medicon/utils/router.dart';
 import 'package:medicon/widgets/app_bar/appbar_leading_image.dart';
@@ -38,6 +39,7 @@ class _SelectCountryScreenState extends State<SelectCountryScreen> {
 @override Widget build(BuildContext context) { 
   return Consumer<OnboardingServices>(
     builder: (context, selectCountryVM, child) {
+      country.text = selectCountryVM.userCountry;
       return SafeArea(
         child: Scaffold(
           appBar: _buildAppBar(context), 
@@ -133,7 +135,7 @@ class _SelectCountryScreenState extends State<SelectCountryScreen> {
                       errorSnackBar(context, 'Selected country cannot be empty ');
                   }else{
                     nextPage(context, page:  SelectUserScreen(
-                    country.text,
+                    country: country.text,
                     ));
                   }
                   
