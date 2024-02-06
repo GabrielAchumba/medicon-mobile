@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medicon/services/auth_services/auth_provider.dart';
+import 'package:medicon/services/onboarding_services/onboarding_service.dart';
 import 'package:medicon/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:medicon/services/common/file_storage_service.dart';
@@ -37,9 +38,9 @@ class _AppState extends State<App> with WidgetsBindingObserver {
               ChangeNotifierProvider(
                 create: (context) => FileStorageServices(),
               ),
-              /* ChangeNotifierProvider(
+              ChangeNotifierProvider(
                 create: (context) => OnboardingServices(),
-              ), */
+              ),
             ],
             child: MaterialApp(
               debugShowCheckedModeBanner: false,

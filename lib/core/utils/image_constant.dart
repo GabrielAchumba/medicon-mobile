@@ -135,9 +135,6 @@ class ImageConstant {
   // Onboarding Profile images
   static String imgMakiDoctor = '$imagePath/img_maki_doctor.svg';
 
-  static String imgIconamoonCertiIndigoA200 =
-      '$imagePath/img_iconamoon_certi_indigo_a200.svg';
-
   // Date of Birth images
   static String imgArrowLeftBlack90002 =
       '$imagePath/img_arrow_left_black_900_02.svg';
@@ -278,21 +275,24 @@ class ImageConstant {
 
   static String imgClockPrimary = '$imagePath/img_clock_primary.svg';
 
+  static String imgIcon = 
+    '$imagePath/img_icon.svg'; //IdentityVerification
+  static String imgIconamoonCerti = 
+    '$imagePath/img_iconamoon_certi.svg'; //Current Year License
+  static String imgIconamoonCertiIndigoA200 = 
+    '$imagePath/img_iconamoon_certi_indigo_a200.svg'; //Additional Certificates
+  static String imgBag = '$imagePath/img_bag.svg'; //Current employment
+  static String imgSettingsRedA200 = 
+    '$imagePath/img_settings_red_a200.svg'; //Full Medical Registration
   static String imgTelevisionDeepPurpleA20001 =
-      '$imagePath/img_television_deep_purple_a200_01.svg';
+      '$imagePath/img_television_deep_purple_a200_01.svg'; //Proof of medical qualification
 
   static String imgCheck = '$imagePath/img_check.svg';
-
-  static String imgSettingsRedA200 = '$imagePath/img_settings_red_a200.svg';
 
   static String imgArrowRightOnprimarycontainer =
       '$imagePath/img_arrow_right_onprimarycontainer.svg';
 
-  static String imgIconamoonCerti = '$imagePath/img_iconamoon_certi.svg';
 
-  static String imgIcon = '$imagePath/img_icon.svg';
-
-  static String imgBag = '$imagePath/img_bag.svg';
 
   static String imgCalendarDateRangeOnerror =
       '$imagePath/img_calendar_date_range_onerror.svg';

@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:medicon/core/snackbar.dart';
+import 'package:medicon/core/utils/image_constant.dart';
 import 'package:medicon/models/additional_certificate_file.dart';
 import 'package:medicon/models/current_employment_file.dart';
 import 'package:medicon/models/current_year_license_file.dart';
@@ -12,6 +14,13 @@ import 'package:medicon/models/medical_registration_file.dart';
 import 'package:medicon/models/not_verified_profile.dart';
 import 'package:medicon/models/specialty.dart';
 import 'package:medicon/models/specialty_certificate_file.dart';
+import 'package:medicon/pages/onboarding_profile/additional_certificate/additional_certificate.dart';
+import 'package:medicon/pages/onboarding_profile/current_employment/current_employment.dart';
+import 'package:medicon/pages/onboarding_profile/current_year_license/current_year_license.dart';
+import 'package:medicon/pages/onboarding_profile/identity_verification/identity_verification.dart';
+import 'package:medicon/pages/onboarding_profile/medical_qualification/proof_of_medical_qualification.dart';
+import 'package:medicon/pages/onboarding_profile/medical_registration/medical_registration.dart';
+import 'package:medicon/pages/onboarding_profile/specialty_certificate/specialty_certificate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardingServices with ChangeNotifier {
@@ -32,49 +41,56 @@ class OnboardingServices with ChangeNotifier {
       iconColor: Colors.blueAccent,
       iconData: Icons.access_alarm_outlined,
       isActive: false,
-      isPendingVerification: false
+      isPendingVerification: false,
+      icon: ImageConstant.imgTelevisionDeepPurpleA20001
     ),
     NotVerifiedProfile(
       title: 'Full Medical Registration',
       iconColor: Colors.redAccent,
       iconData: Icons.person_2_outlined,
       isActive: false,
-      isPendingVerification: false
+      isPendingVerification: false,
+      icon: ImageConstant.imgSettingsRedA200
     ),
     NotVerifiedProfile(
       title: 'Current Year License',
       iconColor: Colors.orangeAccent,
       iconData: Icons.lightbulb_outline,
       isActive: false,
-      isPendingVerification: false
+      isPendingVerification: false,
+      icon: ImageConstant.imgIconamoonCerti
     ),
     NotVerifiedProfile(
       title: 'Additional Certificates',
       iconColor: Colors.orangeAccent,
       iconData: Icons.lightbulb_outline,
       isActive: false,
-      isPendingVerification: false
+      isPendingVerification: false,
+      icon: ImageConstant.imgIconamoonCertiIndigoA200
     ),
     NotVerifiedProfile(
       title: 'Identity Verification',
       iconColor: Colors.redAccent,
       iconData: Icons.perm_identity_outlined,
       isActive: false,
-      isPendingVerification: false
+      isPendingVerification: false,
+      icon: ImageConstant.imgIcon
     ),
     NotVerifiedProfile(
       title: 'Current Employment',
       iconColor: Colors.greenAccent,
       iconData: Icons.badge_outlined,
       isActive: false,
-      isPendingVerification: false
+      isPendingVerification: false,
+      icon: ImageConstant.imgBag
     ),
     NotVerifiedProfile(
       title: 'Specialty Registration',
       iconColor: Colors.greenAccent,
       iconData: Icons.badge_outlined,
       isActive: false,
-      isPendingVerification: false
+      isPendingVerification: false,
+      icon: ImageConstant.imgBag
     ),
   ];
   List<MedicalQualificationFile> medicalQualificationFiles = [];
@@ -506,7 +522,7 @@ class OnboardingServices with ChangeNotifier {
     print(dataRes);
     if (response.statusCode == 200 || response.statusCode == 201) {
       isLoading = false;
-      userCountry = dataRes["country"];
+      userCountry = dataRes["country"] == null ? "" : dataRes["country"];
       notifyListeners();
 
     } else {
@@ -550,8 +566,8 @@ class OnboardingServices with ChangeNotifier {
     print(dataRes);
     if (response.statusCode == 200 || response.statusCode == 201) {
       isLoading = false;
-      userSpecialization = dataRes["specialization"];
-      updateUserType(dataRes["specialization"]);
+      userSpecialization = dataRes["specialization"] == null ? "" : dataRes["specialization"];
+      updateUserType(userSpecialization);
       notifyListeners();
 
     } else {
@@ -564,6 +580,10 @@ class OnboardingServices with ChangeNotifier {
   }
 
   void updateUserType(String _userType){
+    print("_userType: $_userType");
+    isGeneralPractitioner = true;
+    isSpecialist = false;
+    userType = "";
     switch(_userType){
       case "General Practitioner":
       isGeneralPractitioner = true;

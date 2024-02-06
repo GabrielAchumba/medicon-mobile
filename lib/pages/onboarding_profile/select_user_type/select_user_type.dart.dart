@@ -34,6 +34,7 @@ class _SelectUserScreenState extends State<SelectUserScreen> {
   @override Widget build(BuildContext context) { 
     return Consumer<OnboardingServices>(
       builder: (context, selectUserTypeVM, child) {
+        print("userType: ${selectUserTypeVM.userType}");
         return SafeArea(
           child: Scaffold(
             appBar: _buildAppBar(context), 
@@ -89,10 +90,10 @@ class _SelectUserScreenState extends State<SelectUserScreen> {
   /// Section Widget
   Widget _buildList(BuildContext context, OnboardingServices selectUserTypeVM) { 
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center, 
+      mainAxisAlignment: MainAxisAlignment.spaceBetween, 
       children: [
-        Padding(
-          padding: EdgeInsets.only(right: 8.h), 
+        Expanded(
+          //padding: EdgeInsets.only(right: 8.h), 
           child: _buildSpecialistItem(
             context, label: "General Practitioner", 
             selectUserTypeVM: selectUserTypeVM,
@@ -102,8 +103,8 @@ class _SelectUserScreenState extends State<SelectUserScreen> {
               ) :AppDecoration.fillGray5003.copyWith(borderRadius: BorderRadiusStyle.roundedBorder13),
           )
         ), 
-        Padding(
-          padding: EdgeInsets.only(left: 8.h), 
+        Expanded(
+          //padding: EdgeInsets.only(left: 8.h), 
           child: _buildSpecialistItem(
             context, label: "Specialist", 
             selectUserTypeVM: selectUserTypeVM,

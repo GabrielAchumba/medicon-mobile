@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medicon/core/app_export.dart';
+import 'package:medicon/pages/onboarding_profile/select_country/select_country.dart';
+import 'package:medicon/utils/router.dart';
 import 'package:medicon/widgets/custom_elevated_button.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -57,8 +59,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               SizedBox(height: 30.v), 
               CustomElevatedButton(
                 text: "Continue", 
+                busy: false,
                 onPressed: () {
-                  onTapContinue(context);
+                  nextPage(context, page: const SelectCountryScreen());
                 }
               ), 
               Spacer(flex: 29)

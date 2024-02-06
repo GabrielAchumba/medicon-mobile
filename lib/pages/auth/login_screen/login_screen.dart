@@ -256,12 +256,16 @@ class _LoginScreenState extends State<LoginScreen> {
             SharedPreferences sf = await SharedPreferences.getInstance();
             bool? isOnbaordingPending = sf.getBool("isOnbaordingPending");
             String? fullName = sf.getString("fullName");
+            print("1");
             if(isOnbaordingPending == false || isOnbaordingPending == null){
+              print("2");
               nextPageOnly(context, page:  WelcomeScreen(fullName: fullName!));
             }else{
+              print("3");
               nextPageOnly(context, page:  DoctorsDashboardScreen());
             }
           }else{
+            print("4");
             errorSnackBar(context!, msg);
           }
         }

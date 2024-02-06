@@ -5,10 +5,12 @@ class NotVerifiedProfile {
   IconData iconData;
   bool isActive;
   bool isPendingVerification;
+  String icon;
 
   NotVerifiedProfile({required this.title,
   required this.iconColor,
   required this.iconData,
   required this.isActive,
-  required this.isPendingVerification});
+  required this.isPendingVerification,
+  required this.icon});
 }

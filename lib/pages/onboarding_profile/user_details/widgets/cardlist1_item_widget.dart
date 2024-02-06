@@ -6,11 +6,17 @@ class Cardlist1ItemWidget extends StatelessWidget {
   Cardlist1ItemWidget({
     Key? key,
     this.onTapCard,
+    required this.imagePath,
+    required this.title,
+    isPendingVerification = false,
   }) : super(
           key: key,
         );
 
   VoidCallback? onTapCard;
+  String imagePath;
+  String title;
+  bool? isPendingVerification;
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +30,11 @@ class Cardlist1ItemWidget extends StatelessWidget {
           borderRadius: BorderRadiusStyle.roundedBorder13,
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(width: 10.h),
             Container(
               height: 48.adaptSize,
               width: 48.adaptSize,
@@ -34,40 +43,47 @@ class Cardlist1ItemWidget extends StatelessWidget {
                 borderRadius: BorderRadiusStyle.circleBorder25,
               ),
               child: CustomImageView(
-                imagePath: ImageConstant.imgTelevisionDeepPurpleA20001,
+                imagePath: imagePath,
                 height: 24.adaptSize,
                 width: 24.adaptSize,
                 alignment: Alignment.center,
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                top: 16.v,
-                bottom: 12.v,
-              ),
-              child: Text(
-                "Proof of medical qualification",
-                style: CustomTextStyles.titleSmallGray700,
-              ),
-            ),
-            Container(
-              height: 27.adaptSize,
-              width: 27.adaptSize,
-              margin: EdgeInsets.symmetric(vertical: 10.v),
-              padding: EdgeInsets.symmetric(
-                horizontal: 4.h,
-                vertical: 5.v,
-              ),
-              decoration: AppDecoration.outlineGray90014.copyWith(
-                borderRadius: BorderRadiusStyle.roundedBorder13,
-              ),
-              child: CustomImageView(
-                imagePath: ImageConstant.imgCheck,
-                height: 16.adaptSize,
-                width: 16.adaptSize,
-                alignment: Alignment.centerRight,
+            SizedBox(width: 10.h),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.only(
+                  top: 16.v,
+                  bottom: 12.v,
+                ),
+                child: Text(
+                  title,
+                  style: CustomTextStyles.titleSmallGray700,
+                ),
               ),
             ),
+            SizedBox(width: 10.h),
+            if(isPendingVerification == true)
+              Container(
+                height: 27.adaptSize,
+                width: 27.adaptSize,
+                margin: EdgeInsets.symmetric(vertical: 10.v),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 4.h,
+                  vertical: 5.v,
+                ),
+                decoration: AppDecoration.outlineGray90014.copyWith(
+                  borderRadius: BorderRadiusStyle.roundedBorder13,
+                ),
+                child: CustomImageView(
+                  imagePath: ImageConstant.imgCheck,
+                  height: 16.adaptSize,
+                  width: 16.adaptSize,
+                  alignment: Alignment.centerRight,
+                ),
+              ),
+            if(isPendingVerification == false)
+              Text("")
           ],
         ),
       ),
